@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
   // be sure to include its associated Category and Tag data
   try {
     const productData = await Product.findAll({
+      // Include the Tag model using the specified alias
       include: [{ model: Category }, { model: Tag, as: 'tag_association' }],
     });
     res.status(200).json(productData);
@@ -18,10 +19,24 @@ router.get('/', async (req, res) => {
 });
 
 // get one product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
+  try {
+    const ProductData = await Product.findByPk(req.params.id, {
+      // JOIN with Category and Tag
+      include: [{ model: Category }, { model: Tag, as: 'tag_association' }],
+    });
 
+    if (!ProductData) {
+      res.status(404).json({ message: 'No Product found with this id!' });
+      return;
+    }
+
+    res.status(200).json(ProductData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 // create new product
