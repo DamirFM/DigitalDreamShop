@@ -98,14 +98,14 @@ router.put('/:id', (req, res) => {
           });
 
             // figure out which ones to remove
-          const productTagsToRemove = productTags
-          .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
-          .map(({ id }) => id);
-                  // run both actions
-          return Promise.all([
-            ProductTag.destroy({ where: { id: productTagsToRemove } }),
-            ProductTag.bulkCreate(newProductTags),
-          ]);
+          // const productTagsToRemove = productTags
+          // .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
+          // .map(({ id }) => id);
+          //         // run both actions
+          // return Promise.all([
+          //   ProductTag.destroy({ where: { id: productTagsToRemove } }),
+          //   ProductTag.bulkCreate(newProductTags),
+          // ]);
         });
       }
 
