@@ -25,7 +25,7 @@ Welcome to the backend DigitalDreamShop aplication built using Express.js, Seque
 
 ## Walkthrough video link
 
--
+- https://drive.google.com/file/d/1_sFv5OP6rN_8fQmeSKdSOt1rw13iQtLa/view?usp=sharing
 
 ## Installation
 
